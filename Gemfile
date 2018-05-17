@@ -56,3 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'activeadmin', '~> 1.0.0.pre2' 
 gem 'devise'
 gem 'carrierwave', '~> 0.10.0'
+gem 'acts_as_votable', '~> 0.11.1'
+gem 'ckeditor', '4.1.3'
+gem 'paperclip'
+gem "cancan"

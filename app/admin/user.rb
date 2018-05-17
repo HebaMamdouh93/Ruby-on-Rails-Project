@@ -14,10 +14,14 @@ ActiveAdmin.register User do
       filter :created_at
       show do |user|
         attributes_table do
+            
             row :name
             row :email 
             row :gender
-            row :dob 
+            row :dob
+            row "Image" do |user|
+                image_tag user.avatar, class: 'my_image_size'
+            end 
             
       
         end
