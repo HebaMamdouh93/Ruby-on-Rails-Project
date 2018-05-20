@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lectures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Course</th>
+      <th>User</th>
+      <th>Attachment</th>
+      <th>Like Or Unlike Lecture</th>
+      <th>Spam Lecture</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lectures.each do |lecture| %>
+      <tr>
+        <td><%= raw(lecture.content) %></td>
+        <td><%= lecture.course.title %></td>
+        <td><%= lecture.user.name %></td>
+        <td><%= link_to "Download", download_file_lecture_path(lecture) %></td>
+        <% if (! current_user.voted_for? lecture) %>
+        <td><%= link_to "like", like_or_unlike_lecture_path(lecture) %></td>
+        <% else %>
+        <td><%= link_to "unlike", like_or_unlike_lecture_path(lecture) %></td>
+        <% end %>
+        <% if !current_user.lectures.where(id: lecture.id ).first %>
+        <td><%= link_to 'Spam a Lecture', spam_lec_lecture_path(lecture) %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+        <td>
+        <%= link_to 'Show', lecture %>
+        <% if ( can? :update, Lecture ) && ( current_user.id == lecture.user.id ) %>
+        <%= link_to 'Edit', edit_lecture_path(lecture,user_id: lecture.user.id ,course_id: lecture.course.id) %>
+        <%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

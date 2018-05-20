@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= raw(@lecture.content) %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%= link_to "Download", download_file_lecture_path(@lecture) %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @lecture.course.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lecture.user.name %>
+  
+</p>
+
+<div class ="container">
+  <h2>Comments</h2>
+  <h3 class="subtitle is-5"><strong><%= @lecture.comments.count %></strong> Comments</h3>
+  <h3 class="subtitle is-5"><strong><%= @lecture.votes_for.size %></strong> Likes
+  <% if (! current_user.voted_for? @lecture) %>
+        <%= link_to "like", like_or_unlike_lecture_path(@lecture) %>
+        <% else %>
+        <%= link_to "unlike", like_or_unlike_lecture_path(@lecture) %>
+  <% end %>
+  </h3>
+  <% @lecture.comments.each do |comment| %>
+    
+    <div class="comment">
+    <%= image_tag comment.user.avatar, class: 'my_image_size' %>
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.user.name%>
+    </p>
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.content %>
+    </p>
+    
+    
+    </div>
+    <br>
+    <br>
+  <% end %>
+</div>
+<div class="container">
+  <h2>Add Comment</h2>
+  <%= render 'comments/form' %>
+</div>
+
+<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
+<%= link_to 'Back', lectures_path %>
