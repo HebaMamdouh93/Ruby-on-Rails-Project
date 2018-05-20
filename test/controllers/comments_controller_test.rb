@@ -1,7 +1,14 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  include Devise::Test::IntegrationHelpers
+  setup do
+    @comment = comments(:one)
+    sign_in users(:one)
+
+  end
+
+ 
+
+
 end

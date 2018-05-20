@@ -20,7 +20,7 @@
         <td><%= course.user.name %></td>
         <td><%= link_to 'Show', course %>
         <% if ( can? :update, Course ) && ( current_user.id == course.user.id ) %>
-      
+  
         <%= link_to 'Add new Lecture', new_lecture_path(user_id: course.user.id ,course_id: course.id)  %>
         <%= link_to 'Edit', edit_course_path(course) %>
         <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>

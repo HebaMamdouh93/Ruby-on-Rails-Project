@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     before_action :set_lecture
+  
     def create
         #@lecture = Lecture.find(params[:lecture_id])
         @comment = @lecture.comments.create(comment_params)
@@ -9,7 +10,7 @@ class CommentsController < ApplicationController
         else
           flash.now[:danger] = "error"
         end
-      end
+    end
  
     private
 

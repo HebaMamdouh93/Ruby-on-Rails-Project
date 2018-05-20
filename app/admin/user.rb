@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+    permit_params :name , :email , :password , :gender , :dob , :avatar , :instructor
+    
     index do
         selectable_column
         id_column
@@ -12,6 +14,7 @@ ActiveAdmin.register User do
 
       filter :email 
       filter :created_at
+      
       show do |user|
         attributes_table do
             
@@ -26,4 +29,29 @@ ActiveAdmin.register User do
       
         end
       end
+
+      form do |f|
+        tabs do
+          tab 'Basic' do
+            f.inputs 'Basic Details' do
+              f.input :name 
+              f.input :email
+              if f.object.new_record?
+                f.input :password
+                f.input :password_confirmation
+            end
+              
+              f.input :dob
+              f.input :gender
+              f.input :instructor
+              f.input :avatar
+            end
+          end
+    
+          
+        end
+        f.actions
+      end
+
+      
 end

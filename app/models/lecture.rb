@@ -15,4 +15,6 @@ class Lecture < ApplicationRecord
 
     #many to many relation [flag as spam]
     has_and_belongs_to_many :users
+
+    validates :content, presence: true
 end

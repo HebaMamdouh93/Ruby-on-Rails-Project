@@ -2,6 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+  
   <div class="field">
   <%= f.label :name %><br>
   <%= f.text_field :name %>
@@ -34,7 +35,10 @@
     <%= f.label :gender %>
     <%= f.select:gender, User.genders.keys %>
   </div>
-
+  <div class="field">
+  <%= f.label :instructor_or_normal_user %>
+  <%= f.select:instructor, User.instructors.keys %>
+</div>
   <div class="field">
     <%= f.label :avatar %><br>
     <%= f.file_field :avatar %>

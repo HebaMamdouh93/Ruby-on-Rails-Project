@@ -9,6 +9,9 @@ class User < ApplicationRecord
         #gender [Male & Female] 
         enum gender: { male: 0,female: 1 } # make setter && getter
 
+         #gender [Male & Female] 
+         enum instructor: { instructor: 1,normal_user: 0 } # make setter && getter
+
         #upload image
         mount_uploader :avatar, AvatarUploader
 
