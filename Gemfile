@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.6.0'
+#gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -60,3 +60,11 @@ gem 'acts_as_votable', '~> 0.11.1'
 gem 'ckeditor', '4.1.3'
 gem 'paperclip'
 gem "cancan"
+group :development do
+  gem 'mysql2', '>= 0.3.18', '< 0.6.0'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
