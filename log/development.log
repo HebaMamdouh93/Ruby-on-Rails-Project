@@ -99,3 +99,63 @@ Processing by CoursesController#index as HTML
 Completed 200 OK in 7293ms (Views: 7072.8ms | ActiveRecord: 156.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-06-17 23:52:42 +0200
+  [1m[35m (106.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (16.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by CoursesController#index as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-17 23:52:42 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (90.9ms)
+Completed 200 OK in 5699ms (Views: 5646.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-17 23:53:07 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (300.6ms)
+Completed 200 OK in 550ms (Views: 547.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-06-17 23:54:15 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NgRPGMqK49G105GqdWHcZoOQs8HLoGo7+zEuab4Yy/+xySumpG/TPg0cJQV3WIC65qtXBUGitdHo/dnWwqV3Lg==", "user"=>{"name"=>"fatma", "email"=>"fatma@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "dob"=>"1-6-1993", "gender"=>"female", "instructor"=>"normal_user", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x007f770abb0818 @tempfile=#<Tempfile:/tmp/RackMultipart20180617-18249-4hu9v6.jpg>, @original_filename="1.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"1.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (13.9ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'fatma@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (20.5ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `gender`, `dob`, `avatar`, `instructor`) VALUES ('fatma@gmail.com', '$2a$11$sDUlh/Rh9QdX3DAp3SlNU.uvG.3CWrVOLP05N7SGd4oHdOALlx52u', '2018-06-17 21:54:16', '2018-06-17 21:54:16', 'fatma', 1, '1993-06-01', '1.jpg', 0)[0m
+  [1m[35m (110.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (15.6ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2018-06-17 21:54:16', `last_sign_in_at` = '2018-06-17 21:54:16', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 13[0m
+  [1m[35m (38.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 572ms (ActiveRecord: 200.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-17 23:54:16 +0200
+Processing by CoursesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 13 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT `courses`.* FROM `courses`[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 11 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 LIMIT 1[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 11 LIMIT 1[0m  [["id", 11], ["LIMIT", 1]]
+  Rendered courses/index.html.erb within layouts/application (89.9ms)
+Completed 200 OK in 361ms (Views: 352.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/courses/3" for 127.0.0.1 at 2018-06-17 23:54:31 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 13 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  `courses`.* FROM `courses` WHERE `courses`.`id` = 3 LIMIT 1[0m
+  Rendering courses/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 11 LIMIT 1[0m
+  Rendered courses/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 228ms (Views: 223.1ms | ActiveRecord: 1.0ms)
+
+
